@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-8">
+        <h1>Formulario</h1>
+        <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" autocomplete="off" class="row g-3">
+            <div class="col-md-3">
+                <label for="nombre" class="form-label">nombre de usuario</label>
+                <input 
+                formControlName="nombre" 
+                type="text"
+                [ngClass]="{ 'is-invalid': nombreControl.invalid && nombreControl.touched}"
+                class="form-control" 
+                id="nombre">
+                <div 
+                *ngIf="nombreControl.hasError('required')" class="invalid-feedback">
+                    inserte nombre
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <label for="clave" class="form-label">clave</label>
+                <input 
+                formControlName="clave" 
+                type="password"
+                [ngClass]="{ 'is-invalid': claveControl.invalid && claveControl.touched}"
+                class="form-control" 
+                id="clave">
+                <div 
+                *ngIf="claveControl.hasError('required')" 
+                class="invalid-feedback">
+                    inserte clave
+                </div>
+                <div *ngIf="claveControl.hasError('minlenght(6)')" 
+                class="invalid-feedback" >
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col-md-4">
+                <label for="mail" class="form-label">mail</label>
+                <input [formControl]="emailControl" type="text" [ngClass]="{'is-invalid': emailControl.invalid && emailControl.touched}"
+                    class="form-control" id="mail">
+
+
+                <div *ngIf="emailControl.hasError('required') " class="invalid-feedback"> inserte mail, ej: aaaa@bbbbb.com</div>
+
+                <div *ngIf="emailControl.hasError('mail') " class="invalid-feedback">
+                    error en el formato
+                </div>
+                <div *ngIf="emailControl.hasError('mail') " class="invalid-feedback">
+                    error en el formato
+                </div>
+                
+
+            </div>
+
+
+
+            <div 
+            class="col-12">
+                <button 
+                type="submit" 
+                class="btn btn-primary"
+                >entrar
+            </button>
+
+            </div>
+
+        </form>
+    </div>
+
+</div>
