@@ -53,7 +53,7 @@ export class FormReactiveComponent {
       alert('login exitos')
     }else{
       alert("campos incompletos o incorrectos")
-      
+      this.registerForm.markAllAsTouched();
     }
     
   }
