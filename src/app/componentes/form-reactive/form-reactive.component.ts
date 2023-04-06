@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { min } from 'rxjs';
 
 @Component({
@@ -30,7 +30,8 @@ export class FormReactiveComponent {
     '',
     [
       Validators.required,
-      Validators.email
+      Validators.email,
+      this.arrobaValidator()
     ]
   )
 
@@ -57,5 +58,16 @@ export class FormReactiveComponent {
     
   }
 
+  arrobaValidator(): ValidatorFn{
+    return  (control: AbstractControl) : ValidationErrors | null =>{
+      if(!control.value.includes("@")){
+        return{
+        noArroba: false,
+        
+        }
+      }
+      return null;
+    }
+  }
 
 }
